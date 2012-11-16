@@ -104,4 +104,4 @@
 		});
 
 	}
-})(jQuery)
+})(typeof (jQuery) === 'undefined' ? Zepto : jQuery)
