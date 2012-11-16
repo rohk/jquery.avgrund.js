@@ -5,8 +5,10 @@
  *  MIT licensed, (c) 2012 http://pixelhunter.me/
  */
 
-(function($) {
-	$.fn.avgrund = function(options) {
+(function ($) {
+    'use strict';
+    
+	$.fn.avgrund = function (options) {
 		var defaults = {
 			width: 380, // max = 640
 			height: 280, // max = 350
@@ -21,18 +23,18 @@
 			openOnEvent: true,
 			setEvent: 'click',
 			template: '<p>This is test popin content!</p>'
-		};
-		var options = $.extend(defaults, options);
+		},
+            options = $.extend(defaults, options);
 
-		return this.each(function() {
+		return this.each(function () {
 			var self = $(this),
 				body = $('body'),
 				maxWidth = options.width > 640 ? 640 : options.width,
 				maxHeight = options.height > 350 ? 350 : options.height,
-				template = typeof options.template == 'function' ? options.template(self) : options.template;
+				template = typeof options.template === 'function' ? options.template(self) : options.template;
 
 			body.addClass('avgrund-ready');
-			body.append('<div class="avgrund-overlay ' + options.overlayClass + '"></div>');				
+			body.append('<div class="avgrund-overlay ' + options.overlayClass + '"></div>');
 			body.append('<div class="avgrund-popin ' + options.holderClass + '">' + template + '</div>');
 
 			$('.avgrund-popin').css({
@@ -50,7 +52,7 @@
 				$('.avgrund-popin').addClass('stack');
 			}
 
-			if (options.onBlurContainer != '') {
+			if (options.onBlurContainer !== '') {
 				$(options.onBlurContainer).addClass('avgrund-blur');
 			}
 			
@@ -72,7 +74,7 @@
 				} else {
 					if ($(e.target).is('.avgrund-close')) {
 						deactivate();
-					}	
+					}
 				}
 			}
 
@@ -94,7 +96,7 @@
 
 			// init on click or custom event
 			if (options.openOnEvent) {
-				self.bind(options.setEvent, function(e) {
+				self.bind(options.setEvent, function (e) {
 					e.stopPropagation();
 					activate();
 				});
@@ -103,5 +105,5 @@
 			}
 		});
 
-	}
-})(typeof (jQuery) === 'undefined' ? Zepto : jQuery)
+	};
+})(window.jQuery || window.Zepto);
